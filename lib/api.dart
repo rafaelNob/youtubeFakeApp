@@ -10,7 +10,7 @@ const URL_BASE ="https://www.googleapis.com/youtube/v3/";
 
 class Api{
 
-  pesquisar (String pesquisa)async{
+  Future<List<Video>> pesquisar (String pesquisa)async{
     http.Response response;
     response =  await http.get(URL_BASE +'search'
     '?part=snippet'
@@ -18,7 +18,7 @@ class Api{
     '&maxResults=20'
     '&order=date'
     '&key=$CHAVE_YOUTUBE_API'
-    '&channelId=$ID_CANAL'
+   // '&channelId=$ID_CANAL'
     '&q=$pesquisa'
     );
     if(response.statusCode == 200){
@@ -29,11 +29,7 @@ class Api{
           return Video.fromJson(objVideo) ;
         }
       ).toList();
-  int c = 0;
-      for (var a in videos){
-        c++;
-        print(c.toString() + "== "+ a.titulo);
-      }
+      return videos;
     }else{
 
     }

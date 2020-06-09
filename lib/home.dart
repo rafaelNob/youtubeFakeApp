@@ -22,10 +22,17 @@ class HomeState extends State<Home> {
     ];
     return Scaffold(
       appBar: AppBar(
+        
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.grey),
         title: Image.asset("img/youtube.png", width: 100, height: 50),
         actions: <Widget>[
+          Text("Fake",
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold
+          ),
+          ),
           IconButton(
               icon: Icon(Icons.videocam),
               onPressed: () {
@@ -43,7 +50,10 @@ class HomeState extends State<Home> {
               })
         ],
       ),
-      body: telas[_bottomIconActive],
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: telas[_bottomIconActive],
+      ),
       //barra de nevegação
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
