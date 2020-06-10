@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:youtubefakeapp/api.dart';
 import 'package:youtubefakeapp/model/Video.dart';
+
+import '../api.dart';
 
 class Inicio extends StatefulWidget {
 
@@ -38,7 +41,18 @@ class InicioState extends State<Inicio> {
                 List<Video> videos = snapshot.data;
                 
                 Video video = videos[indice];
-                      return Column(
+                      return GestureDetector(
+                        onTap: (){
+                          //API DO YOUTUBE
+                          FlutterYoutube.playYoutubeVideoById(
+                            apiKey: CHAVE_YOUTUBE_API, 
+                            videoId: video.id,
+                            autoPlay: true,
+                            fullScreen: true,
+                            appBarColor: Colors.red
+                            );
+                        },
+                        child: Column(
                         children: <Widget>[
                           Container(
                             height: 200,
@@ -56,6 +70,8 @@ class InicioState extends State<Inicio> {
                           )
                         ],
                         
+                      ),
+
                       );
                     },
                     //define cor e tamanho das linhas

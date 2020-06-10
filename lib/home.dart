@@ -25,9 +25,18 @@ class HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white, 
+        
         iconTheme: IconThemeData(color: Colors.grey),
-        title: Image.asset("img/youtube.png", width: 100, height: 50),
+        title: GestureDetector(
+          child: Image.asset("img/youtube.png", width: 100, height: 50),
+          onTap: (){
+             setState(() {
+           
+              _bottomIconActive = 0;
+            });
+          },
+        ),
         actions: <Widget>[
           Text("Fake",
           style: TextStyle(
