@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtubefakeapp/telas/ContextSearchDelegate.dart';
 import 'package:youtubefakeapp/telas/EmAlta.dart';
 import 'package:youtubefakeapp/telas/Incricao.dart';
 import 'package:youtubefakeapp/telas/Inicio.dart';
@@ -11,11 +12,12 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> {
   int _bottomIconActive = 0;
+  String resultado = "";
   @override
   Widget build(BuildContext context) {
     //adicionado as telas
     List<Widget> telas = [
-      Inicio(),
+      Inicio(resultado),
       EmAlta(),
       Inscricao(),
       Pasta(),
@@ -31,22 +33,17 @@ class HomeState extends State<Home> {
           style: TextStyle(
             color: Colors.red,
             fontWeight: FontWeight.bold
+            ),
           ),
-          ),
-          IconButton(
-              icon: Icon(Icons.videocam),
-              onPressed: () {
-                print("camera");
-              }),
           IconButton(
               icon: Icon(Icons.search),
-              onPressed: () {
-                print("pesquisa");
-              }),
-          IconButton(
-              icon: Icon(Icons.account_circle),
-              onPressed: () {
-                print("conta");
+              onPressed: ()async {
+                // CAPTURA OQ FOI DIGITADO NO CAMPO DE PESQUISA ContextSearchDelegate
+              String res = await showSearch(context: context, delegate: ContextSearchDelegate());
+              setState(() {
+                resultado = res;
+              });
+             
               })
         ],
       ),

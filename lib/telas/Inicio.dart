@@ -3,6 +3,9 @@ import 'package:youtubefakeapp/api.dart';
 import 'package:youtubefakeapp/model/Video.dart';
 
 class Inicio extends StatefulWidget {
+
+  String res;
+  Inicio(this.res);
   @override
   InicioState createState() => InicioState();
 }
@@ -10,14 +13,14 @@ class Inicio extends StatefulWidget {
 class InicioState extends State<Inicio> {
   Api a = Api();
 
-  listarVideos() {
-    return a.pesquisar("");
+  listarVideos(String pesquisa) {
+    return a.pesquisar(pesquisa);
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Video>>(
-        future: listarVideos(),
+        future: listarVideos(widget.res),
 
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
